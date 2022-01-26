@@ -8,6 +8,9 @@ body{
     padding-left: 15px;/*Делаем по бокам отступы, чтобы контент не прилипал к краям, т.е. заранее думаем об адаптиве*/
     padding-right: 15px;
 }
+header{/*Создаем тонкую серую линию снизу контейнера header, который занимает 100% ширины*/
+    border-bottom: 1px solid #DEDEDE;/*из макета*/
+}
 .header{/*Дочерние элементы у него-это a, весь nav и button. Их и расставим*/
     font-family: 'Open Sans', sans-serif;
     display: flex;
@@ -32,13 +35,18 @@ body{
     display: flex;
     padding-left: 0;/*В инспекторе увидели лишний отступ слева, убираем его*/
     gap: 46px;/*Расстояние между ссылками(элементами) в меню, Свойство gap CSS задаёт отступы между столбцами и строками, а не вдоль края контейнера сетки.*/
-    
+    margin-right: 99px;/*выровняла в пиксель пёрф*/
+    margin-top: 20px;/*выровняла в пиксель пёрф*/
+    margin-left: 2px;/*выровняла в пиксель пёрф*/
 }
 .header-nav a{/*Стилизуем ссылки из меню*/
     font-weight: 600;/*Из макета*/
     font-size: 20px;/*Из макета*/
     color:#443737;/*Из макета*/
     text-decoration: none;/*убираем подчеркивание ссылок*/
+}
+.header-nav a:hover{
+    color: #FFC725;/*при наведении на ссылки они горят желтым*/
 }
 .header-nav a::after{/*Создаем желтую линию под ссылкой, на которую наводим"*/
     content: '';/*так как это линия без букв, оставляем пустую строку*/
@@ -58,6 +66,7 @@ body{
     border: none;/*Убрали у кнопки обводку*/
     padding: 0;/*увидели лишние отступы в инспекторе*/
     gap: 10px;/*из макета расстояник между корзиной и 125*/
+    cursor: pointer;/*при наведении на кнопку черная стрелкастановится "рукой"*/
 }
 .button-item{
     position: relative;/*Чтобы менять расположение круга с 5 относительно корзины*/
@@ -85,9 +94,9 @@ body{
     text-align: center;/*Выравниваем эл-ты по центру*/
     color: #FFFFFF;
     background-image: url(../images/bg.jpg);
-    background-size: cover;/*Чтобы картинка растягивалась и сжималась с окном браузера, запись св-ва в тетр*/
+    background-size: cover;/*запись св-ва в тетр*/
     padding: 142px 0;
-    background-position: center center;/*Чтобы у самой картинки соль и лаваш были по центру при сжатии окна.. */
+    background-position: center center;/*Чтобы у самой картинки соль и лаваш были по центру при сжатии окна.. Чтобы картинка растягивалась и сжималась с окном браузера, */
 }
 .breadcrumbs{
     padding-left: 0;/*Из инспектора обнуляем у списка отступ слева*/
@@ -95,18 +104,25 @@ body{
     list-style-type: none;/*убираем точки у списка*/
     display: flex;
     justify-content: center;/*Главная и наше меню-идут друз за другом и по центру*/
-    gap: 16px;/*Чтобы измерить расстояние между ними- создали прямоугольник, и у него width примерно 16*/
+    gap: 7px;/*Чтобы измерить расстояние между ними- создали прямоугольник, и у него width примерно 16. затем исправили в pixel perfect на 7*/
 }
-.breadcrumbs a{
+.breadcrumbs a{/*стилизуем "хлебные крошки", т.е. ссылки со слэшем между ними*/
     color: #DEDEDE;/*из макета*/
     font-size: 15px;/*из макета*/
     font-family: 'Open Sans', sans-serif;/*из макета*/
     text-decoration: none;
 }
+.breadcrumbs a:hover{
+   color: #FFC725;
+}
 .breadcrumbs a::before{/*Создаем символ "/"  перед всеми ссылками в блоке .breadcrumbs  */
     content: '/';
     position: relative;
-    left: -7px;/*Сдвинули значок слэша-подобрали прям в инспекторе*/
+    left: -3px;/*Сдвинули значок слэша-подобрали прям в инспекторе -7px, затем в пиксель перф сделали -3*/
+    pointer-events: none;/*Отключаем возможность, когда нажимаем на слэш-перейти по ссылке. слэш должен быть отдельным элементом от ссылки*/
+}
+.breadcrumbs a:hover::before{/*эта запись=при наведении элемент before, т.е. слэш*/
+    color: #DEDEDE;/*не окрашивать в желтый, а оставить в сером оттенке*/
 }
 .breadcrumbs li:first-child a::before{/*Нам нужно: в блоке .breadcrumbs выбираем первый ли и у него убираем слэш. сложно..*/
     display: none;/*Убрали знак слэша перед "главная"*/
@@ -114,14 +130,70 @@ body{
 .title{
     font-weight: 700;/*Из макета =bold*/
     font-size: 79px;/*из макета*/
-    margin-top: 10px;/*откуда-на след уроке*/
-    margin-bottom: 10px;/*откуда-на след уроке*/
+    margin-top: 17px;/*откуда-на след уроке=сдвинули в инспекторе для pixel perfect было 10 стало 17*/
+    margin-bottom: 20px;/*было 10*откуда-на след уроке=сдвинули в инспекторе для pixel perfect*/
 }
 .description{/*стилизуем текст "Выбирай..."  */
     font-family: 'Open Sans', sans-serif;/*из макета*/
     font-size: 15px;/*из макета*/
-    line-height: 1.5;/*из макета 24 px, Анна сделала сама относительную единицу 1.5*/
+    line-height: 1.6;/*из макета 24 px, Анна сделала сама относительную единицу 1.5, затем в инспекторе исправили на 1.6 pixel perfect*/
     color: #FAF9F9;
     max-width: 320px;/*взяли из макета, но указали макс. после этого текст улетает влево*/
     margin: 0 auto;/*вернули текст в центр*/
+}
+
+/*Стилмзуем баннер скидка -30%*/
+.banner{
+    margin-top: 140px;
+}
+.banner-box{
+    background-image: url(../images/banner.jpg);
+    background-size: cover;/* запись св-ва в тетр*/
+    background-repeat: no-repeat;/*откл повтора*/
+    padding: 100px;/*картинка с бургером узкая, тексту внутри даем отступ по макету 100px-->становится широкой*/
+    background-position: center center;/**Чтобы картинка растягивалась и сжималась с окном браузера,*/
+}
+.banner-title{
+    font-size: 60px;/*из макета*/
+    font-weight: 900;/*из макета*/
+    color: #FFFFFF;
+    margin: 0;
+}
+.discount{
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F37335;
+    padding: 4px 19px 7px 16px;
+    border-radius: 14px;/*из макета*/
+    text-transform: uppercase;/*заглавные*/
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    display: block;
+    max-width: 60px;
+    margin-bottom: 6px;
+}
+.banner-text{
+    color: #FAF9F9;
+    font-size: 15px;
+    line-height: 24px;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 24px;
+    max-width: 307px;
+    margin-top: 13px;
+    margin-left: 1px;
+}
+.banner-link{
+    display: block;
+    max-width: 150px;
+    color: #1E2F40;
+    background-color: #FBB731;
+    text-decoration: none;
+    padding: 20px 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    margin-top: 16px;
+    text-align: center;
 }
